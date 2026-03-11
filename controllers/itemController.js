@@ -3,14 +3,17 @@ module.exports = {
     getGame: async (req, res) => {
         const { category } = req.params;
         const games = await db.getGames(category);
-        res.render("pages/gamesList", { games });
+        return res.render("pages/gamesList", { games });
     },
     postGame: () => {},
     deleteGame: async (req, res) => {
         const { game } = req.params;
-        console.log(game);
         await db.deleteGame(game);
-        res.redirect("/");
+        return res.redirect("/");
     },
     updateGame: () => {},
+    getFormGame: async (_, res) => {
+        const categories = await db.getCategories();
+        return res.render("/pages/addGame", { categories });
+    },
 };
