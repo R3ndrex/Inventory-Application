@@ -6,11 +6,11 @@
         <% if(locals?.categories&& locals?.categories.length>0){ %>
             <ul class="categories-list">
             <% locals?.categories.forEach((category)=>{ %>
-            <div class="category-item">
-                <span class="category-name"><%=category.name%></span>
+            <li>
+                <span class="item-name"><%=category.name%></span>
                 <a class="delete-button" href="/categories/<%=category.id%>/delete"><img src="/delete-icon.png" alt="delete button"></a>
-                <a href="/games/<%=category.name%>"><img src="<%=category.imagesrc%>" alt="<%=category.name%>"></a>
-            </div>
+                <a class="image-container" href="/games/<%=category.name%>"><img src="<%=category.imagesrc%>" alt="<%=category.name%>"></a>
+            </li>
 
         <%}) %>
         </ul>
