@@ -3,6 +3,17 @@
     <%- include("../partials/head", {title:"Main"}) %>
     <body>
         <h1>Main</h1>
+        <% if(locals?.categories){ %>
+            <ul class="categories-list">
+            <% locals?.categories.forEach((category)=>{ %>
+            <div class="category-item">
+                <li><%=category.name%></li>
+                <a href="/categories/<%=category.id%>/delete">Delete</a>
+                <img src="<%=category.imagesrc%>" alt="<%=category.name%>">
+            </div>
 
+        <%}) %>
+        </ul>
+        <%}%>
     </body>
 </html>
