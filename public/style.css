@@ -17,4 +17,48 @@ body {
         "Open Sans",
         "Helvetica Neue",
         sans-serif;
+    background-color: rgb(57, 58, 65);
+    color: white;
+}
+.categories-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 33%));
+    gap: 1rem;
+}
+.category-item,
+.game-item {
+    position: relative;
+    max-width: 90vw;
+    color: white;
+    font-weight: 600;
+}
+.category-name,
+.game-name {
+    top: 80%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.category-name,
+.game-name,
+.delete-button {
+    z-index: 1;
+    position: absolute;
+    white-space: nowrap;
+}
+a {
+    text-decoration: none;
+}
+.delete-button {
+    right: 0;
+    top: 0;
+    color: red;
+    cursor: pointer;
+    font-weight: 600;
+}
+.category-item img,
+.game-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    cursor: pointer;
 }
