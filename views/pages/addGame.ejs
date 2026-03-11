@@ -12,7 +12,7 @@
             <select name="category" id="category">
                 <%if(locals?.categories){%>
                     <%locals?.categories.forEach((category)=>{%>
-                        <option value="<%=category.name%>"><%=category.name%></option>
+                        <option value="<%=category.id%>"><%=category.name%></option>
                     <%})%>
                     <%}%>
             </select>
