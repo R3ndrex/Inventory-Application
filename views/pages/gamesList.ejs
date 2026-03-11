@@ -9,13 +9,12 @@
             <li>
                 <span class="item-name"><%=game.name%></span>
                 <a class="delete-button" href="/games/<%=game.id%>/delete"><img src="/delete-icon.png" alt="delete button"></a>
-                <img src="<%=game.imagesrc%>" alt="<%=game.name%>">
+                <img class="image-container" src="<%=game.imagesrc%>" alt="<%=game.name%>">
             </li>
         <%}) %>
         </ul>
         <%} else {%>
             <div>This category seems empty... </div>
-            <a href="/games/add">Add Game</a>
             <%}%>
              <a href="/">Return</a>
     </body>
