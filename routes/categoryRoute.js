@@ -8,9 +8,12 @@ categoryRouter.get("/", categoryController.getIndex);
 categoryRouter
     .route("/categories/:category")
     .get(categoryController.getCategory)
-    .post(categoryController.postCategory)
-    .delete(categoryController.deleteCategory);
+    .post(categoryController.postCategory);
 
+categoryRouter.get(
+    "/categories/:category/delete",
+    categoryController.deleteCategory,
+);
 categoryRouter.post(
     "/categories/:category/update",
     categoryController.updateCategory,
