@@ -24,7 +24,7 @@ module.exports = {
     deleteCategory: async (req, res) => {
         const { category } = req.params;
         await db.deleteCategory(category);
-        res.redirect("/");
+        return res.redirect("/");
     },
     updateCategory: () => {},
 };
