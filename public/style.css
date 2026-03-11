@@ -32,7 +32,6 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 33%));
     gap: 1rem;
     > li {
-        height: 100%;
         display: flex;
         flex-direction: column;
         position: relative;
