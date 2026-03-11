@@ -5,7 +5,13 @@ const categoryValidator = [
     body("category", "Format isn't correct ")
         .trim()
         .notEmpty()
-        .withMessage("Category can't be empty"),
+        .withMessage("Category can't be empty")
+        .bail()
+        .isAlpha()
+        .withMessage("Must contain alphabet characters only")
+        .bail()
+        .isLength({ min: 2, max: 15 })
+        .withMessage("Cant be longer than 15 character or shorter than 2"),
 ];
 
 module.exports = {
@@ -17,7 +23,6 @@ module.exports = {
     postCategory: () => {},
     deleteCategory: async (req, res) => {
         const { category } = req.params;
-        console.log(category);
         await db.deleteCategory(category);
         res.redirect("/");
     },
