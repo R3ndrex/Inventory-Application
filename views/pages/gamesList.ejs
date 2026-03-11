@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-    <%- include("../partials/head", {title:"Main"}) %>
+    <%- include("../partials/head", {title:"Games List"}) %>
     <body>
-        <h1>Main</h1>
-        <% if(locals?.games){ %>
-            <ul class="categories-list">
+        <h1>Games List</h1>
+        <% if(locals?.games&& locals?.games.length>0){ %>
+            <ul class="game-list">
             <% locals?.games.forEach((game)=>{ %>
             <div class="game-item">
                 <span class="game-name"><%=game.name%></span>
@@ -13,6 +13,9 @@
             </div>
         <%}) %>
         </ul>
-        <%}%>
+        <%} else {%>
+            <div>This category seems empty... </div>
+            <a href="/games/add">Add Game</a>
+            <%}%>
     </body>
 </html>
