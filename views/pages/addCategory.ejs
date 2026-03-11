@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head", {title:"Add category"}) %>
+    <body>
+        <h1>Add category</h1>
+        <form action="/categories/add" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" />
+            <label for="image">Image</label>
+            <input type="file" accept="image/*" name="image" id="image" />
+            <button type="submit">Submit</button>
+        </form>
+
+    </body>
+</html>
