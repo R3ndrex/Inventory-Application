@@ -14,16 +14,21 @@ async function deleteGame(id) {
 async function postCategory() {}
 async function updateCategory() {}
 
-async function getGames() {
+async function getGames(category) {
     const { rows } = await db.query(
         `SELECT games.* FROM games 
         LEFT JOIN categories 
-        ON games.categoryId = categories.id`,
+        ON games.categoryId = categories.id WHERE categories.name = $1`,
+        [category],
     );
     return rows;
 }
-
-async function postGame() {}
+async function postGame({ category, name, image }) {
+    await db.query(
+        `INSERT INTO games (name, imageSrc, categoryId) VALUES ($1,$2,$3);`,
+        [name, image, category],
+    );
+}
 async function updateGame() {}
 module.exports = {
     getCategories,
