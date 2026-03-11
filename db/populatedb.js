@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS games(
             REFERENCES categories(id) ON DELETE CASCADE
 );
 
-INSERT INTO categories (name, imageSrc) VALUES ('Racing', 'https://cdn.mos.cms.futurecdn.net/Ms8dmvGfuCbiG9yZDKCbAQ-650-80.jpg.webp'), ('Fighting','https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRKTcllXPpPIgZZhOlsa8V95139FAVxqjs4kQ&s');
+INSERT INTO categories (name, imageSrc) VALUES ('Racing', 'https://cdn.mos.cms.futurecdn.net/Ms8dmvGfuCbiG9yZDKCbAQ-650-80.jpg.webp'), ('Fighting','https://static0.thegamerimages.com/wordpress/wp-content/uploads/2021/05/Fighting-Game-Glossary.jpg');
 INSERT INTO games (name, imageSrc, categoryId) VALUES ('Forza Horizon 6', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfxAQY2EkEdjvz5CBGbDc-rCnTtDqbeyALLw&s', 1);
 `;
 
