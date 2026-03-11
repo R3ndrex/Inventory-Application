@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head", {title:"Main"}) %>
+    <body>
+        <h1>Main</h1>
+        <% if(locals?.games){ %>
+            <ul class="categories-list">
+            <% locals?.games.forEach((game)=>{ %>
+            <div class="game-item">
+                <span class="game-name"><%=game.name%></span>
+                <a class="delete-button" href="/games/<%=game.id%>/delete"><img src="/delete-icon" alt="delete button"></a>
+                <img src="<%=game.imagesrc%>" alt="<%=game.name%>">
+            </div>
+        <%}) %>
+        </ul>
+        <%}%>
+    </body>
+</html>
