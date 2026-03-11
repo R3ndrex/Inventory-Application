@@ -2,20 +2,21 @@
 <html lang="en">
     <%- include("../partials/head", {title:"Games List"}) %>
     <body>
-        <h1>Games List</h1>
+        <h1>Games List</h1>  <a href="/games/add">Add Game</a>
         <% if(locals?.games&& locals?.games.length>0){ %>
             <ul class="game-list">
             <% locals?.games.forEach((game)=>{ %>
-            <div class="game-item">
-                <span class="game-name"><%=game.name%></span>
-                <a class="delete-button" href="/games/<%=game.id%>/delete"><img src="/delete-icon" alt="delete button"></a>
+            <li>
+                <span class="item-name"><%=game.name%></span>
+                <a class="delete-button" href="/games/<%=game.id%>/delete"><img src="/delete-icon.png" alt="delete button"></a>
                 <img src="<%=game.imagesrc%>" alt="<%=game.name%>">
-            </div>
+            </li>
         <%}) %>
         </ul>
         <%} else {%>
             <div>This category seems empty... </div>
             <a href="/games/add">Add Game</a>
             <%}%>
+             <a href="/">Return</a>
     </body>
 </html>
