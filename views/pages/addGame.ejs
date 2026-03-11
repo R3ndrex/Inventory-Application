@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head", {title:"Add Game"}) %>
+    <body>
+        <h1>Add Game</h1>
+        <form action="/games/add" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" />
+            <label for="image">Image</label>
+            <input type="file" accept="image/*" name="image" id="image" />
+            <label for="category">Category</label>
+            <select name="category" id="category">
+                <%if(locals?.categories){%>
+                    <%locals?.categories.forEach((category)=>{%>
+                        <option value="<%=category.name%>"><%=category.name%></option>
+                    <%})%>
+                    <%}%>
+            </select>
+            <button type="submit">Submit</button>
+        </form>
+    </body>
+</html>
