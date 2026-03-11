@@ -20,7 +20,8 @@ body {
     background-color: rgb(57, 58, 65);
     color: white;
 }
-.categories-list {
+.categories-list,
+.game-list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 33%));
     gap: 1rem;
