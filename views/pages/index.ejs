@@ -3,7 +3,7 @@
     <%- include("../partials/head", {title:"Main"}) %>
     <body>
         <h1>Main</h1>
-        <% if(locals?.categories){ %>
+        <% if(locals?.categories&& locals?.categories.length>0){ %>
             <ul class="categories-list">
             <% locals?.categories.forEach((category)=>{ %>
             <div class="category-item">
@@ -14,6 +14,9 @@
 
         <%}) %>
         </ul>
-        <%}%>
+        <%}else {%>
+            <div> It seems there are no categories... </div>
+            <a href="/categories/add">Add Category</a>
+            <%}%>
     </body>
 </html>
