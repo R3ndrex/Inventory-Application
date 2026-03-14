@@ -14,6 +14,11 @@ async function deleteGame(id) {
 async function postCategory() {}
 async function updateCategory() {}
 
+async function getDevelopers() {
+    const { rows } = await db.query(`SELECT * FROM developers`);
+    return rows;
+}
+
 async function getGames(category) {
     const { rows } = await db.query(
         `SELECT games.* FROM games 
@@ -31,6 +36,26 @@ async function postGame({ category, name, image }) {
         [name, image, category],
     );
 }
+
+async function getFullGameInfo(gameId) {
+    const { rows } = await db.query(
+        `
+        SELECT games.name AS name,games.imageSrc as imagesrc, developers.name AS developer ,array_agg(categories.name) AS categories FROM games 
+        LEFT JOIN games_categories 
+        ON games_categories.game_id=games.id
+        LEFT JOIN categories
+        ON games_categories.category_id = categories.id
+        LEFT JOIN developers 
+        ON developers.game_id=games.id
+        WHERE games.id = $1
+        GROUP BY games.name,developers.name,games.imageSrc
+        `,
+        [gameId],
+    );
+    console.log(rows);
+    return rows[0];
+}
+
 async function updateGame() {}
 module.exports = {
     getCategories,
@@ -41,4 +66,6 @@ module.exports = {
     deleteGame,
     postGame,
     updateGame,
+    getDevelopers,
+    getFullGameInfo,
 };
