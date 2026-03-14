@@ -6,8 +6,8 @@ itemRouter
     .route("/add")
     .get(itemController.getFormGame)
     .post(itemController.postGame);
-
+itemRouter.get("/:gameId", itemController.getGame);
 itemRouter.get("/:game/delete", itemController.deleteGame);
 itemRouter.post("/:game/update", itemController.updateGame);
-itemRouter.get("/:category", itemController.getGame);
+
 module.exports = itemRouter;
