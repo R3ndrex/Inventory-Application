@@ -11,7 +11,10 @@ app.use(express.static("public"));
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/", categoryRoute);
+app.get("/", (_, res) => {
+    return res.redirect("/categories");
+});
+app.use("/categories", categoryRoute);
 app.use("/games", itemRoute);
 
 app.use((req, res) => {
