@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include("../partials/head",{title:"Game Page"})%>
+    <body>
+        <h1>Game Page</h1>
+        <h2><%=locals?.name%></h2>
+        <img src="<%=locals?.imagesrc%>" alt="<%=locals?.name%> image" />
+        <p>Developer: <%=locals?.developer%></p>
+        <p>Categories:</p>
+        <ul>
+            <%locals?.categories.forEach((category)=>{%>
+                <li><%=category%></li>
+            <%})%>
+        </ul>
+    </body>
+</html>

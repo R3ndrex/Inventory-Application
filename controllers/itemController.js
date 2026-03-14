@@ -10,9 +10,15 @@ const gameValidator = [
 
 module.exports = {
     getGame: async (req, res) => {
-        const { category } = req.params;
-        const games = await db.getGames(category);
-        return res.render("pages/gamesList", { games });
+        const { gameId } = req.params;
+        const { name, developer, categories, imagesrc } =
+            await db.getFullGameInfo(gameId);
+        return res.render("pages/gamePage", {
+            name,
+            developer,
+            categories,
+            imagesrc,
+        });
     },
     postGame: [
         gameValidator,
@@ -27,7 +33,7 @@ module.exports = {
             }
             const { name } = matchedData(req);
             const { category, image } = req.body;
-            console.log(category);
+
             await db.postGame({ category, name, image });
             return res.redirect("/");
         },
@@ -40,6 +46,7 @@ module.exports = {
     updateGame: () => {},
     getFormGame: async (_, res) => {
         const categories = await db.getCategories();
-        return res.render("pages/addGame", { categories });
+        const developers = await db.getDevelopers();
+        return res.render("pages/addGame", { categories, developers });
     },
 };
