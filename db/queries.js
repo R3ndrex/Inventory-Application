@@ -17,8 +17,10 @@ async function updateCategory() {}
 async function getGames(category) {
     const { rows } = await db.query(
         `SELECT games.* FROM games 
-        LEFT JOIN categories 
-        ON games.categoryId = categories.id WHERE categories.name = $1`,
+        LEFT JOIN games_categories
+        ON games_categories.game_id=games.id
+        LEFT JOIN categories
+        ON games_categories.category_id = categories.id WHERE categories.name = $1`,
         [category],
     );
     return rows;
