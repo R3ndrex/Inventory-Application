@@ -3,20 +3,14 @@ const categoryController = require("../controllers/categoryController");
 
 const categoryRouter = Router();
 
-categoryRouter.get("/", categoryController.getIndex);
+categoryRouter.get("/", categoryController.getCategoryList);
 
 categoryRouter
-    .route("/categories/:category")
+    .route("/:category")
     .get(categoryController.getCategory)
     .post(categoryController.postCategory);
 
-categoryRouter.get(
-    "/categories/:category/delete",
-    categoryController.deleteCategory,
-);
-categoryRouter.post(
-    "/categories/:category/update",
-    categoryController.updateCategory,
-);
+categoryRouter.get("/:category/delete", categoryController.deleteCategory);
+categoryRouter.post("/:category/update", categoryController.updateCategory);
 
 module.exports = categoryRouter;
