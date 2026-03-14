@@ -15,11 +15,15 @@ const categoryValidator = [
 ];
 
 module.exports = {
-    getIndex: async (_, res) => {
+    getCategoryList: async (_, res) => {
         const categories = await db.getCategories();
         return res.render("pages/index", { categories });
     },
-    getCategory: () => {},
+    getCategory: async (req, res) => {
+        const { category } = req.params;
+        const games = await db.getGames(category);
+        return res.render("pages/gamesList", { games });
+    },
     postCategory: () => {},
     deleteCategory: async (req, res) => {
         const { category } = req.params;
