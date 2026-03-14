@@ -16,6 +16,14 @@
                     <%})%>
                     <%}%>
             </select>
+            <select name="developer" id="developer">
+                <%if(locals?.developers){%>
+                    <%locals?.developers.forEach((developer)=>{%>
+                        <option value="<%=developer.id%>"><%=developer.name%></option>
+                    <%})%>
+                    <%}%>
+            </select>
+
             <button type="submit">Submit</button>
         </form>
         <a href="/">Return to Main Menu</a>
