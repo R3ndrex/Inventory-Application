@@ -50,16 +50,19 @@ body {
 }
 .item-name,
 .delete-button {
-    visibility: hidden;
     z-index: 1;
     position: absolute;
     white-space: nowrap;
 }
-
+.delete-button {
+    visibility: hidden;
+}
+.item-name {
+    visibility: visible;
+}
 .categories-list > li:hover,
 .game-list > li:hover {
-    .delete-button,
-    .item-name {
+    .delete-button {
         visibility: visible;
     }
 }
