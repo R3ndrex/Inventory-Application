@@ -7,10 +7,13 @@ const gameValidator = [
         .notEmpty()
         .withMessage("Name can't be empty")
         .bail()
-        .custom(async (value) => {
-            const id = req?.params?.id;
+        .custom(async (value, { req }) => {
+            const id = req?.params?.gameId;
             const game = await db.findGameByName(value);
-            if (game && game.name === String(value) && id !== game.id) {
+            if (
+                game?.name === String(value) &&
+                Number(id) !== Number(game.id)
+            ) {
                 throw new Error("Name must be unique");
             }
             return true;
@@ -94,5 +97,34 @@ module.exports = {
         const allDevelopers = await db.getDevelopers();
         return res.render("pages/addGame", { allCategories, allDevelopers });
     },
-    updateGame: (req, res) => {},
+    updateGame: [
+        gameValidator,
+        async (req, res) => {
+            const result = validationResult(req);
+            if (!result.isEmpty()) {
+                const allCategories = await db.getCategories();
+                const allDevelopers = await db.getDevelopers();
+                const { image, name, categories, developers } = req.body;
+                return res.status(400).render("pages/updateGame", {
+                    errors: result.array(),
+                    allDevelopers,
+                    allCategories,
+                    categories,
+                    developers,
+                    image,
+                    name,
+                });
+            }
+            const { name, image, categories, developers } = matchedData(req);
+            console.log(name, image, categories, developers);
+            const { gameId } = req.params;
+            await db.updateGame(gameId, {
+                name,
+                image,
+                developers,
+                categories,
+            });
+            return res.redirect("/");
+        },
+    ],
 };
