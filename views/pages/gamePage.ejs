@@ -2,31 +2,42 @@
 <html lang="en">
     <%-include("../partials/head",{title:"Game Page"})%>
     <body>
-        <h1>Game Page</h1>
-         <a href="/">Return to Main Menu</a>
-        <h2><%=locals?.name%></h2>
-        <img src="<%=locals?.imagesrc%>" alt="<%=locals?.name%> image" />
+        <header class="game-header"><h1>Game Page</h1>
+         <a href="/">Return to Main Menu</a></header>
+        <main class="game-main">
+            <h2><%=locals?.name%></h2>
+            <div class="game-info-container">
+                <img src="<%=locals?.imagesrc%>" alt="<%=locals?.name%> image" />
+            
+            <%if(locals?.developers && locals?.categories){%>
+                <div>
+                    <div class="developers-list-gamepage">
+                    <p>Developers:</p>
+                    <ul>
+                        <%locals?.developers.forEach((developer)=>{%>
+                            <li><%=developer%></li>
+                        <%})%>
+                    </ul>
+                </div>
+                <div class="categories-list-gamepage">
+                    <p>Categories:</p> 
+                    <ul>
+                        <%locals?.categories.forEach((category)=>{%>
+                            <li><%=category%></li>
+                        <%})%>
+                    </ul>
+                </div>
+                <a href="/games/<%=locals?.id%>/edit" class="update-button">Update Game </a>
+                <a href="/games/<%=locals?.id%>/delete" class="red">Delete Game</a>
+                </div>
         
-        <%if(locals?.developers){%>
-            <div class="developers-list-gamepage">
-                <p>Developers:</p>
-                <ul>
-                    <%locals?.developers.forEach((developer)=>{%>
-                        <li><%=developer%></li>
-                    <%})%>
-                </ul>
-            </div>
+            <%}else{%>
+               <div>
+                <a href="/games/<%=locals?.id%>/edit" class="update-button">Update Game </a>
+                <a href="/games/<%=locals?.id%>/delete" class="red">Delete Game</a>
+               </div> 
             <%}%>
-        <%if(locals?.categories){%>
-            <div class="categories-list-gamepage">
-                <p>Categories:</p> 
-                <ul>
-                    <%locals?.categories.forEach((category)=>{%>
-                        <li><%=category%></li>
-                    <%})%>
-                </ul>
             </div>
-        
-        <%}%>
+        </main>
     </body>
 </html>
