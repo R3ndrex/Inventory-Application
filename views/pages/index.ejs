@@ -9,6 +9,7 @@
             <% locals?.categories.forEach((category)=>{ %>
             <li>
                 <span class="item-name"><%=category.name%></span>
+                <a class="edit-button" href="/categories/<%=category.id%>/edit"><img src="/edit-icon.svg" alt="edit button"></a>
                 <a class="delete-button" href="/categories/<%=category.id%>/delete"><img src="/delete-icon.png" alt="delete button"></a>
                 <a class="image-container" href="/categories/<%=category.name%>"><img src="<%=category.imagesrc%>" alt="<%=category.name%>"></a>
             </li>
