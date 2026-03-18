@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head", {title:"Update Game"}) %>
+    <body>
+        <h1>Update Game</h1>
+        <%-include("../partials/addGameForm", {action:"/games/edit",buttonText: "Update Game", allCategories, allDevelopers, categories, developers })%>
+        <%-include("../partials/errors", {errors:locals?.errors})%>
+        <a href="/">Return to Main Menu</a>
+    </body>
+</html>
