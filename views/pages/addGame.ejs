@@ -3,29 +3,8 @@
     <%- include("../partials/head", {title:"Add Game"}) %>
     <body>
         <h1>Add Game</h1>
-        <form action="/games/add" method="post">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" />
-            <label for="image">Image</label>
-            <input type="file" accept="image/*" name="image" id="image" />
-            <label for="category">Category</label>
-            <select name="category" id="category">
-                <%if(locals?.categories){%>
-                    <%locals?.categories.forEach((category)=>{%>
-                        <option value="<%=category.id%>"><%=category.name%></option>
-                    <%})%>
-                    <%}%>
-            </select>
-            <select name="developer" id="developer">
-                <%if(locals?.developers){%>
-                    <%locals?.developers.forEach((developer)=>{%>
-                        <option value="<%=developer.id%>"><%=developer.name%></option>
-                    <%})%>
-                    <%}%>
-            </select>
-
-            <button type="submit">Submit</button>
-        </form>
+        <%-include("../partials/addGameForm", {action:locals?.action || "/games/add",buttonText:locals?.buttonText || "Add Game",allCategories,allDevelopers,categories:locals?.categories,developers:locals?.developers })%>
+        <%-include("../partials/errors", {errors:locals?.errors})%>
         <a href="/">Return to Main Menu</a>
     </body>
 </html>
