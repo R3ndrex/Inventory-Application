@@ -21,14 +21,15 @@ module.exports = {
     },
     getCategory: async (req, res) => {
         const { category } = req.params;
-        const games = await db.getGames(category);
+        const games = await db.getGamesByCategory(category);
         return res.render("pages/gamesList", { games });
     },
-    postCategory: () => {},
+    postCategory: (req, res) => {},
     deleteCategory: async (req, res) => {
         const { category } = req.params;
         await db.deleteCategory(category);
         return res.redirect("/");
     },
-    updateCategory: () => {},
+    updateCategory: (req, res) => {},
+    getFormCategory: (req, res) => {},
 };
