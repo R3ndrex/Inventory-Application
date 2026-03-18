@@ -109,6 +109,9 @@ a {
     cursor: pointer;
     font-weight: 600;
 }
+.red {
+    color: red;
+}
 .add-form {
     width: max-content;
     display: flex;
@@ -152,6 +155,12 @@ ul {
         color: green;
     }
 }
-.error {
-    color: red;
+.game-header,
+.game-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.game-info-container {
+    display: flex;
 }
