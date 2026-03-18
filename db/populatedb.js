@@ -14,8 +14,8 @@ CREATE TABLE IF NOT EXISTS games(
 
 CREATE TABLE IF NOT EXISTS games_categories(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    game_id INTEGER REFERENCES games(id),
-    category_id INTEGER REFERENCES categories(id)
+    game_id INTEGER REFERENCES games(id) ON DELETE CASCADE,
+    category_id INTEGER REFERENCES categories(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS developers(
@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS developers(
 
 CREATE TABLE IF NOT EXISTS games_developers(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    game_id INTEGER REFERENCES games(id),
-    developer_id INTEGER REFERENCES developers(id)
+    game_id INTEGER REFERENCES games(id) ON DELETE CASCADE,
+    developer_id INTEGER REFERENCES developers(id) ON DELETE CASCADE
 );
 
 INSERT INTO categories (name, imageSrc) 
