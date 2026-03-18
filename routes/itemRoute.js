@@ -5,9 +5,11 @@ const itemRouter = Router();
 itemRouter
     .route("/add")
     .get(itemController.getFormGame)
-    .post(itemController.postGame);
+    .post(itemController.addGame);
+
 itemRouter.get("/:gameId", itemController.getGame);
-itemRouter.get("/:game/delete", itemController.deleteGame);
-itemRouter.post("/:game/update", itemController.updateGame);
+itemRouter.get("/:gameId/delete", itemController.deleteGame);
+itemRouter.get("/:gameId/edit", itemController.getUpdateGameForm);
+itemRouter.post("/:gameId/edit", itemController.updateGame);
 
 module.exports = itemRouter;
