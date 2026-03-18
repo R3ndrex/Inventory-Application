@@ -49,12 +49,14 @@ body {
     }
 }
 .item-name,
-.delete-button {
+.delete-button,
+.edit-button {
     z-index: 1;
     position: absolute;
     white-space: nowrap;
 }
-.delete-button {
+.delete-button,
+.edit-button {
     visibility: hidden;
 }
 .item-name {
@@ -62,7 +64,8 @@ body {
 }
 .categories-list > li:hover,
 .game-list > li:hover {
-    .delete-button {
+    .delete-button,
+    .edit-button {
         visibility: visible;
     }
 }
@@ -92,6 +95,12 @@ a {
     color: white;
     font-weight: 600;
 }
+.edit-button {
+    width: 2rem;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+}
 
 .delete-button {
     right: 0;
@@ -99,4 +108,50 @@ a {
     color: red;
     cursor: pointer;
     font-weight: 600;
+}
+.add-form {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    justify-content: center;
+    button {
+        cursor: pointer;
+        width: max-content;
+        padding: 0.5rem;
+    }
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+.developers-list-gamepage,
+.categories-list-gamepage {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.developers-list-gamepage,
+.categories-list-gamepage {
+    li {
+        cursor: pointer;
+        border-radius: 10px;
+        background-color: #28282b;
+        padding: 0.5rem;
+        border: 1px solid black;
+    }
+}
+.developers-list-gamepage {
+    li:hover {
+        color: red;
+    }
+}
+.categories-list-gamepage {
+    li:hover {
+        color: green;
+    }
+}
+.error {
+    color: red;
 }
