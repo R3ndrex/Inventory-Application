@@ -20,8 +20,13 @@ CREATE TABLE IF NOT EXISTS games_categories(
 
 CREATE TABLE IF NOT EXISTS developers(
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-    name VARCHAR(255),
-    game_id INTEGER REFERENCES games(id)
+    name VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS games_developers(
+    id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+    game_id INTEGER REFERENCES games(id),
+    developer_id INTEGER REFERENCES developers(id)
 );
 
 INSERT INTO categories (name, imageSrc) 
@@ -37,8 +42,12 @@ VALUES ('Forza Horizon 6', 'https://digital-report.ru/wp-content/uploads/2026/01
 INSERT INTO games_categories(game_id,category_id) 
 VALUES (1,1), (2,3),(2,4);
 
-INSERT INTO developers (name,game_id)
-VALUES ('Epic Games',2),('Playground Games',1);
+INSERT INTO developers (name)
+VALUES ('Epic Games'),('Playground Games');
+
+INSERT INTO games_developers (game_id,developer_id) 
+VALUES (1,2),(2,1);
+
 `;
 
 async function main() {
