@@ -5,12 +5,27 @@
         <h1>Game Page</h1>
         <h2><%=locals?.name%></h2>
         <img src="<%=locals?.imagesrc%>" alt="<%=locals?.name%> image" />
-        <p>Developer: <%=locals?.developer%></p>
-        <p>Categories:</p>
-        <ul>
-            <%locals?.categories.forEach((category)=>{%>
-                <li><%=category%></li>
-            <%})%>
-        </ul>
+        
+        <%if(locals?.developers){%>
+            <div class="developers-list-gamepage">
+                <p>Developers:</p>
+                <ul>
+                    <%locals?.developers.forEach((developer)=>{%>
+                        <li><%=developer%></li>
+                    <%})%>
+                </ul>
+            </div>
+            <%}%>
+        <%if(locals?.categories){%>
+            <div class="categories-list-gamepage">
+                <p>Categories:</p> 
+                <ul>
+                    <%locals?.categories.forEach((category)=>{%>
+                        <li><%=category%></li>
+                    <%})%>
+                </ul>
+            </div>
+        
+        <%}%>
     </body>
 </html>
