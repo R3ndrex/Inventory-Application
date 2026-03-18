@@ -42,6 +42,7 @@ module.exports = {
             developers,
             categories,
             imagesrc,
+            id: gameId,
         });
     },
     addGame: [
