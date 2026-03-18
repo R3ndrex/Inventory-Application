@@ -1,0 +1,37 @@
+<form action="<%=locals?.action%>" method="post" class="add-form">
+            <label for="name">Name</label>
+            <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
+            <label for="image">Image Path</label>
+            <input value="<%=locals?.image || "" %>" name="image" id="image" />
+            
+
+                <%if(locals?.allCategories){%>
+                    <div>
+                        <label for="category">Categories</label>
+                        <div>
+                        <%locals?.allCategories.forEach((category)=>{%>
+                            <label>
+                                <input type="checkbox" name="categories[]" value="<%=category.id%>"<%- locals?.categories?.includes(category.name) ? 'checked' : '' %>>
+                                <%=category.name%>
+                            </label>
+                            <%})%>
+                        </div>
+                    </div>
+                <%}%>
+
+
+                <%if(locals?.allDevelopers){%>
+                    <div>
+                        <label for="developer">Developers</label>
+                        <div>
+                        <%locals?.allDevelopers.forEach((developer)=>{%>
+                            <label>
+                                <input type="checkbox" name="developers[]" value="<%=developer.id%>" <%- locals?.developers?.includes(developer.name) ? 'checked' : '' %>>
+                                <%=developer.name%>
+                            </label>
+                            <%})%>
+                        </div>
+                    </div>
+                <%}%>
+            <button type="submit"><%=locals?.buttonText%></button>
+</form>
