@@ -38,17 +38,21 @@ async function postGame({ categories, name, image, developers }) {
             [name, image],
         );
         const id = rows[0].id;
-        for (const category of categories) {
-            await db.query(
-                `INSERT INTO games_categories (game_id,category_id) VALUES ($1,$2)`,
-                [id, category],
-            );
+        if (categories && categories.length > 0) {
+            for (const category of categories) {
+                await db.query(
+                    `INSERT INTO games_categories (game_id,category_id) VALUES ($1,$2)`,
+                    [id, category],
+                );
+            }
         }
-        for (const developer of developers) {
-            await db.query(
-                `INSERT INTO games_developers (game_id,developer_id) VALUES ($1,$2)`,
-                [id, developer],
-            );
+        if (developers && developers.length > 0) {
+            for (const developer of developers) {
+                await db.query(
+                    `INSERT INTO games_developers (game_id,developer_id) VALUES ($1,$2)`,
+                    [id, developer],
+                );
+            }
         }
 
         await db.query("COMMIT");
@@ -84,7 +88,46 @@ async function getFullGameInfo(gameId) {
     return rows[0];
 }
 
-async function updateGame() {}
+async function updateGame(gameId, { name, image, developers, categories }) {
+    console.log(categories);
+    await db.query("BEGIN");
+    try {
+        await db.query(
+            `UPDATE games 
+            SET name=$1,imagesrc=$2 
+            WHERE id=$3
+            `,
+            [name, image, gameId],
+        );
+        await db.query(`DELETE FROM games_categories WHERE game_id = $1`, [
+            gameId,
+        ]);
+        if (categories && categories.length > 0) {
+            for (const category of categories) {
+                await db.query(
+                    `INSERT INTO games_categories (game_id, category_id) VALUES ($1, $2)`,
+                    [gameId, category],
+                );
+            }
+        }
+        await db.query(`DELETE FROM games_developers WHERE game_id = $1`, [
+            gameId,
+        ]);
+        if (developers && developers.length > 0) {
+            for (const developer of developers) {
+                await db.query(
+                    `INSERT INTO games_developers (game_id, developer_id) VALUES ($1, $2)`,
+                    [gameId, developer],
+                );
+            }
+        }
+
+        await db.query("COMMIT");
+    } catch (error) {
+        await db.query("ROLLBACK");
+        throw error;
+    }
+}
 module.exports = {
     getCategories,
     deleteCategory,
