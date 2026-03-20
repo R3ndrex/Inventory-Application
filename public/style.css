@@ -163,4 +163,20 @@ ul {
 }
 .game-info-container {
     display: flex;
+    max-width: 500px;
+    justify-content: center;
+    img {
+        width: 100%;
+    }
+}
+
+@media screen and (width<1000px) {
+    .game-info-container {
+        flex-direction: column;
+        align-items: start;
+        max-width: 70%;
+    }
+}
+p {
+    margin: 0;
 }
