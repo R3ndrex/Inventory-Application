@@ -117,7 +117,6 @@ module.exports = {
                 });
             }
             const { name, image, categories, developers } = matchedData(req);
-            console.log(name, image, categories, developers);
             const { gameId } = req.params;
             await db.updateGame(gameId, {
                 name,
