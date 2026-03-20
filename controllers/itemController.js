@@ -88,8 +88,8 @@ module.exports = {
             allCategories,
             allDevelopers,
             name,
-            developers,
-            categories,
+            developers: String(developers),
+            categories: String(categories),
             image: imagesrc,
         });
     },
@@ -106,12 +106,13 @@ module.exports = {
                 const allCategories = await db.getCategories();
                 const allDevelopers = await db.getDevelopers();
                 const { image, name, categories, developers } = req.body;
+
                 return res.status(400).render("pages/updateGame", {
                     errors: result.array(),
                     allDevelopers,
                     allCategories,
-                    categories,
-                    developers,
+                    categories: String(categories),
+                    developers: String(developers),
                     image,
                     name,
                 });

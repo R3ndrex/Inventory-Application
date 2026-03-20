@@ -71,7 +71,7 @@ async function findGameByName(name) {
 async function getFullGameInfo(gameId) {
     const { rows } = await db.query(
         `
-        SELECT games.name AS name,games.imageSrc as imagesrc, array_agg( DISTINCT developers.name) AS developers, array_agg( DISTINCT categories.name) AS categories FROM games 
+        SELECT games.name AS name,games.imageSrc as imagesrc, array_agg( DISTINCT developers.id) AS developers, array_agg( DISTINCT categories.id) AS categories FROM games 
         LEFT JOIN games_categories 
         ON games_categories.game_id=games.id
         LEFT JOIN categories
