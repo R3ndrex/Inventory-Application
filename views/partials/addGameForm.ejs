@@ -11,7 +11,7 @@
                         <div>
                         <%locals?.allCategories.forEach((category)=>{%>
                             <label>
-                                <input type="checkbox" name="categories[]" value="<%=category.id%>"<%- locals?.categories?.includes(category.name) ? 'checked' : '' %>>
+                                <input type="checkbox" name="categories[]" value="<%=category.id%>"<%- locals?.categories?.includes(String(category.id)) ? 'checked' : '' %>>
                                 <%=category.name%>
                             </label>
                             <%})%>
@@ -26,7 +26,7 @@
                         <div>
                         <%locals?.allDevelopers.forEach((developer)=>{%>
                             <label>
-                                <input type="checkbox" name="developers[]" value="<%=developer.id%>" <%- locals?.developers?.includes(developer.name) ? 'checked' : '' %>>
+                                <input type="checkbox" name="developers[]" value="<%=developer.id%>" <%- locals?.developers?.includes(String(developer.id)) ? 'checked' : '' %>>
                                 <%=developer.name%>
                             </label>
                             <%})%>
