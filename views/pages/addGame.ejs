@@ -3,7 +3,7 @@
     <%- include("../partials/head", {title:"Add Game"}) %>
     <body>
         <h1>Add Game</h1>
-        <%-include("../partials/addGameForm", {action:locals?.action || "/games/add",buttonText:locals?.buttonText || "Add Game",allCategories,allDevelopers,categories:locals?.categories,developers:locals?.developers })%>
+        <%-include("../partials/addGameForm", {action:locals?.action || "/games/add",buttonText:locals?.buttonText || "Add Game",allCategories,allDevelopers,developersIds:locals?.developersIds,categoriesIds:locals?.categoriesIds })%>
         <%-include("../partials/errors", {errors:locals?.errors})%>
         <a href="/">Return to Main Menu</a>
     </body>

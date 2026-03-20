@@ -26,7 +26,8 @@ const gameValidator = [
         .bail(),
     body("categories", "Format isn't correct")
         .isArray({ min: 1 })
-        .withMessage("There must be 1 or more categories"),
+        .withMessage("There must be 1 or more categories")
+        .bail(),
     body("developers", "Format isn't correct")
         .isArray({ min: 1 })
         .withMessage("There must be 1 or more deveopers"),
@@ -35,12 +36,12 @@ const gameValidator = [
 module.exports = {
     getGame: async (req, res) => {
         const { gameId } = req.params;
-        const { name, developers, categories, imagesrc } =
+        const { name, categoriesnames, developersnames, imagesrc } =
             await db.getFullGameInfo(gameId);
         return res.render("pages/gamePage", {
             name,
-            developers,
-            categories,
+            categoriesNames: categoriesnames,
+            developersNames: developersnames,
             imagesrc,
             id: gameId,
         });
@@ -53,12 +54,13 @@ module.exports = {
                 const allCategories = await db.getCategories();
                 const allDevelopers = await db.getDevelopers();
                 const { image, name, categories, developers } = req.body;
+
                 return res.status(400).render("pages/addGame", {
                     errors: result.array(),
                     allDevelopers,
                     allCategories,
-                    categories,
-                    developers,
+                    categoriesIds: categories,
+                    developersIds: developers,
                     image,
                     name,
                 });
@@ -80,7 +82,7 @@ module.exports = {
     },
     getUpdateGameForm: async (req, res) => {
         const { gameId } = req.params;
-        const { name, developers, categories, imagesrc } =
+        const { name, categoriesids, developersids, imagesrc } =
             await db.getFullGameInfo(gameId);
         const allCategories = await db.getCategories();
         const allDevelopers = await db.getDevelopers();
@@ -88,8 +90,8 @@ module.exports = {
             allCategories,
             allDevelopers,
             name,
-            developers: String(developers),
-            categories: String(categories),
+            categoriesIds: categoriesids.map(String),
+            developersIds: developersids.map(String),
             image: imagesrc,
         });
     },
@@ -106,13 +108,12 @@ module.exports = {
                 const allCategories = await db.getCategories();
                 const allDevelopers = await db.getDevelopers();
                 const { image, name, categories, developers } = req.body;
-
                 return res.status(400).render("pages/updateGame", {
                     errors: result.array(),
                     allDevelopers,
                     allCategories,
-                    categories: String(categories),
-                    developers: String(developers),
+                    categoriesIds: String(categories),
+                    developersIds: String(developers),
                     image,
                     name,
                 });

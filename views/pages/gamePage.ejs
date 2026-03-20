@@ -9,12 +9,12 @@
             <div class="game-info-container">
                 <img src="<%=locals?.imagesrc%>" alt="<%=locals?.name%> image" />
             
-            <%if(locals?.developers && locals?.categories){%>
+            <%if(locals?.developersNames && locals?.categoriesNames){%>
                 <div>
                     <div class="developers-list-gamepage">
                     <p>Developers:</p>
                     <ul>
-                        <%locals?.developers.forEach((developer)=>{%>
+                        <%locals?.developersNames.forEach((developer)=>{%>
                             <li><%=developer%></li>
                         <%})%>
                     </ul>
@@ -22,7 +22,7 @@
                 <div class="categories-list-gamepage">
                     <p>Categories:</p> 
                     <ul>
-                        <%locals?.categories.forEach((category)=>{%>
+                        <%locals?.categoriesNames.forEach((category)=>{%>
                             <li><%=category%></li>
                         <%})%>
                     </ul>
