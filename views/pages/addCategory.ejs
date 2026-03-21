@@ -1,16 +1,1 @@
-<!DOCTYPE html>
-<html lang="en">
-    <%- include("../partials/head", {title:"Add category"}) %>
-    <body>
-        <h1>Add category</h1>
-        <form action="/categories/add" method="post">
-            <label for="name">Name</label>
-            <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
-            <label for="imagesrc">Image</label>
-            <input value="<%=locals?.imagesrc || "" %>" name="imagesrc" id="imagesrc" />
-            <button type="submit">Submit</button>
-        </form>
-        <%-include("../partials/errors",{errors:locals?.errors})%>
-         <a href="/">Return</a>
-    </body>
-</html>
+<%-include("../partials/categoryForm",{action:"/categories/add",title:"Add category"})%>
