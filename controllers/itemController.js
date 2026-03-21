@@ -49,14 +49,14 @@ module.exports = {
     addGame: [
         gameValidator,
         async (req, res) => {
-            const result = validationResult(req);
-            if (!result.isEmpty()) {
+            const errros = validationResult(req);
+            if (!errros.isEmpty()) {
                 const allCategories = await db.getCategories();
                 const allDevelopers = await db.getDevelopers();
                 const { image, name, categories, developers } = req.body;
 
                 return res.status(400).render("pages/addGame", {
-                    errors: result.array(),
+                    errors: errros.array(),
                     allDevelopers,
                     allCategories,
                     categoriesIds: categories,
@@ -103,13 +103,13 @@ module.exports = {
     updateGame: [
         gameValidator,
         async (req, res) => {
-            const result = validationResult(req);
-            if (!result.isEmpty()) {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
                 const allCategories = await db.getCategories();
                 const allDevelopers = await db.getDevelopers();
                 const { image, name, categories, developers } = req.body;
                 return res.status(400).render("pages/updateGame", {
-                    errors: result.array(),
+                    errors: errors.array(),
                     allDevelopers,
                     allCategories,
                     categoriesIds: String(categories),
