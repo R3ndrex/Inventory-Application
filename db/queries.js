@@ -17,6 +17,21 @@ async function postCategory({ name, imagesrc }) {
         imagesrc,
     ]);
 }
+
+async function getCategoryById(id) {
+    const { rows } = await db.query("SELECT * FROM categories WHERE id=$1", [
+        id,
+    ]);
+    return rows[0];
+}
+
+async function postDeveloper({ name, imagesrc }) {
+    await db.query("INSERT INTO developers (name, imageSrc) VALUES ($1,$2)", [
+        name,
+        imagesrc,
+    ]);
+}
+
 async function updateCategory() {}
 
 async function getDevelopers() {
@@ -35,6 +50,19 @@ async function getGamesByCategory(category) {
     );
     return rows;
 }
+
+async function getGamesByDeveloper(category) {
+    const { rows } = await db.query(
+        `SELECT games.* FROM games 
+        LEFT JOIN games_developers
+        ON games_developers.game_id=games.id
+        LEFT JOIN developers
+        ON games_developers.developer_id = developers.id WHERE developers.name = $1`,
+        [category],
+    );
+    return rows;
+}
+
 async function postGame({ categories, name, image, developers }) {
     await db.query("BEGIN");
     try {
@@ -151,4 +179,7 @@ module.exports = {
     getDevelopers,
     getFullGameInfo,
     findGameByName,
+    postDeveloper,
+    getGamesByDeveloper,
+    getCategoryById,
 };
