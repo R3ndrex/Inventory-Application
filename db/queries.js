@@ -11,7 +11,12 @@ async function deleteCategory(id) {
 async function deleteGame(id) {
     await db.query("DELETE FROM games WHERE id = $1", [id]);
 }
-async function postCategory() {}
+async function postCategory({ name, imagesrc }) {
+    await db.query("INSERT INTO categories (name, imageSrc) VALUES ($1,$2)", [
+        name,
+        imagesrc,
+    ]);
+}
 async function updateCategory() {}
 
 async function getDevelopers() {
