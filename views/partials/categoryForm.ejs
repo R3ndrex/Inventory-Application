@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head", {title:locals?.title}) %>
+    <body>
+        <h1><%=locals?.title%></h1>
+        <form action=<%=locals?.action%> method="post">
+            <label for="name">Name</label>
+            <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
+            <label for="imagesrc">Image</label>
+            <input value="<%=locals?.imagesrc || "" %>" name="imagesrc" id="imagesrc" />
+            <button type="submit">Submit</button>
+        </form>
+        <%-include("../partials/errors",{errors:locals?.errors})%>
+        <a href="/">Return</a>
+    </body>
+</html>
