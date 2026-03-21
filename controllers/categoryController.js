@@ -1,17 +1,18 @@
 const db = require("../db/queries");
-const { body, matchingData } = require("express-validator");
+const { body, matchedData, validationResult } = require("express-validator");
 
 const categoryValidator = [
-    body("category", "Format isn't correct ")
+    body("name", "Format isn't correct ")
         .trim()
         .notEmpty()
         .withMessage("Category can't be empty")
         .bail()
-        .isAlpha()
-        .withMessage("Must contain alphabet characters only")
-        .bail()
-        .isLength({ min: 2, max: 15 })
-        .withMessage("Cant be longer than 15 character or shorter than 2"),
+        .isLength({ min: 2, max: 20 })
+        .withMessage("Cant be longer than 20 character or shorter than 2"),
+    body("imagesrc", "Format isn't correct")
+        .trim()
+        .notEmpty()
+        .withMessage("Image path can't be empty"),
 ];
 
 module.exports = {
@@ -24,12 +25,31 @@ module.exports = {
         const games = await db.getGamesByCategory(category);
         return res.render("pages/gamesList", { games });
     },
-    postCategory: (req, res) => {},
+    addCategory: [
+        categoryValidator,
+        async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                const { name, imagescr } = req.body;
+                console.log(imagescr);
+                return res.render("pages/addCategory", {
+                    errors: errors.array(),
+                    name,
+                    imagescr,
+                });
+            }
+            const { name, imagesrc } = matchedData(req);
+            await db.postCategory({ name, imagesrc });
+            res.redirect("/");
+        },
+    ],
     deleteCategory: async (req, res) => {
         const { category } = req.params;
         await db.deleteCategory(category);
         return res.redirect("/");
     },
     updateCategory: (req, res) => {},
-    getFormCategory: (req, res) => {},
+    getFormCategory: async (_, res) => {
+        return res.render("pages/addCategory");
+    },
 };
