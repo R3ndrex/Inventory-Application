@@ -2,9 +2,16 @@
 <html lang="en">
     <%- include("../partials/head", {title:"Main"}) %>
     <body>
-        <h1>Main</h1>
-        <a href="/categories/add">Add Category</a>
-        <% if(locals?.categories&& locals?.categories.length>0){ %>
+    <header>        
+        <h1>Categories</h1>
+    </header>
+        <main>
+          <div class="sub-header-container">  <h3>Categories  — <%=locals?.categories.length%></h2>
+                        <div>
+                            <a href="/categories/add">Add Category</a>
+        <a href="/developers/add">Add Developer</a>
+                        </div></div>
+            <% if(locals?.categories&& locals?.categories.length>0){ %>
             <ul class="categories-list">
             <% locals?.categories.forEach((category)=>{ %>
             <li>
@@ -20,5 +27,6 @@
             <div> It seems there are no categories... </div>
 
             <%}%>
+        </main>
     </body>
 </html>
