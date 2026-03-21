@@ -5,9 +5,9 @@
         <h1>Add category</h1>
         <form action="/categories/add" method="post">
             <label for="name">Name</label>
-            <input type="text" id="name" name="name" />
-            <label for="image">Image</label>
-            <input type="file" accept="image/*" name="image" id="image" />
+            <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
+            <label for="imagesrc">Image</label>
+            <input value="<%=locals?.imagesrc || "" %>" name="imagesrc" id="imagesrc" />
             <button type="submit">Submit</button>
         </form>
         <%-include("../partials/errors",{errors:locals?.errors})%>
