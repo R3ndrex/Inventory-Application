@@ -12,6 +12,9 @@ categoryRouter
 categoryRouter.route("/:category").get(categoryController.getCategory);
 
 categoryRouter.get("/:category/delete", categoryController.deleteCategory);
-categoryRouter.post("/:category/edit", categoryController.updateCategory);
+categoryRouter
+    .route("/:category/edit")
+    .post(categoryController.updateCategory)
+    .get(categoryController.getUpdateForm);
 
 module.exports = categoryRouter;
