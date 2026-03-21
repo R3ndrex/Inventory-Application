@@ -3,6 +3,7 @@ const express = require("express");
 const path = require("node:path");
 const categoryRoute = require("./routes/categoryRoute");
 const itemRoute = require("./routes/itemRoute");
+const developerRoute = require("./routes/developerRoute");
 const app = express();
 
 app.set("view engine", "ejs");
@@ -16,6 +17,7 @@ app.get("/", (_, res) => {
 });
 app.use("/categories", categoryRoute);
 app.use("/games", itemRoute);
+app.use("/developers", developerRoute);
 
 app.use((req, res) => {
     return res.status(404).send("404");
