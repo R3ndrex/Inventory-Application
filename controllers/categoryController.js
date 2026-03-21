@@ -48,7 +48,12 @@ module.exports = {
         await db.deleteCategory(category);
         return res.redirect("/");
     },
-    updateCategory: (req, res) => {},
+    updateCategory: async (req, res) => {},
+    getUpdateForm: async (req, res) => {
+        const { category } = req.params;
+        const { name, imagesrc } = await db.getCategoryById(category);
+        return res.render("pages/updateCategory", { name, imagesrc });
+    },
     getFormCategory: async (_, res) => {
         return res.render("pages/addCategory");
     },
