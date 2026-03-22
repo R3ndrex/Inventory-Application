@@ -12,8 +12,11 @@ li {
     --background-gray: rgb(57, 58, 65);
     --blue: 67, 67, 196;
     --light-blue: rgb(202, 202, 248);
-    --dark-blue: rgb(65, 65, 219);
+    --dark-blue: rgb(64, 64, 136);
     --metal: rgb(126, 126, 161);
+    --red: 211, 67, 67;
+    --dark-red: rgb(156, 58, 58);
+    --light-red: rgb(223, 153, 153);
 }
 body {
     margin: 0;
@@ -264,20 +267,18 @@ ul {
 .categories-list-gamepage {
     li {
         cursor: pointer;
-        border-radius: 10px;
-        background-color: #28282b;
+        border: none;
+        outline: none;
         padding: 0.5rem;
-        border: 1px solid black;
+        transition: all 0.25s ease-in-out;
+        background-color: var(--background-gray);
+        border: var(--light-gray) 1px solid;
+        border-radius: 15px;
+        color: white;
     }
-}
-.developers-list-gamepage {
     li:hover {
-        color: red;
-    }
-}
-.categories-list-gamepage {
-    li:hover {
-        color: green;
+        border: var(--metal) 1px solid;
+        color: var(--metal);
     }
 }
 .game-main {
@@ -289,9 +290,41 @@ ul {
     justify-self: center;
     display: flex;
     flex-direction: column;
-    max-width: min(500px, 70%);
+    max-width: min(500px, 90%);
     justify-content: center;
     img {
         width: 100%;
+    }
+    .button-container {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-around;
+        margin: 1rem 0;
+        a {
+            flex: 1;
+            border-radius: 15px;
+            transition: all 0.25s ease-in-out;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        a:not(.delete-button-game) {
+            border: rgba(var(--blue)) 1px solid;
+            color: var(--light-blue);
+            background-color: rgba(var(--blue), 0.7);
+        }
+        .delete-button-game {
+            border: rgba(var(--red)) 1px solid;
+            color: var(--light-red);
+            background-color: rgba(var(--red), 0.7);
+        }
+        .delete-button-game:hover {
+            background-color: var(--dark-red);
+            color: white;
+        }
+        a:not(.delete-button-game):hover {
+            background-color: var(--dark-blue);
+            color: white;
+        }
     }
 }
