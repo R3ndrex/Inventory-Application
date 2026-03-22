@@ -6,7 +6,15 @@
 li {
     list-style: none;
 }
-
+:root {
+    --gray: #525257;
+    --light-gray: #616166;
+    --background-gray: rgb(57, 58, 65);
+    --blue: 67, 67, 196;
+    --light-blue: rgb(202, 202, 248);
+    --dark-blue: rgb(65, 65, 219);
+    --metal: rgb(126, 126, 161);
+}
 body {
     margin: 0;
     font-family:
@@ -21,13 +29,117 @@ body {
         "Open Sans",
         "Helvetica Neue",
         sans-serif;
-    background-color: rgb(57, 58, 65);
+    background-color: var(--background-gray);
     color: white;
-    margin: 1rem;
 }
-h1 {
+h1,
+h2,
+h3,
+.sub-header-container {
+    font-family:
+        "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    justify-content: center;
+    padding: 1rem;
+    gap: 0.5rem;
+    margin: 1rem;
+    max-width: min(90vw, 400px);
+    border: 1px solid var(--gray);
+    background-color: rgb(64, 65, 71);
+    border-radius: 15px;
+    > * {
+        border-radius: 15px;
+    }
+    input:not(input[type="checkbox"]) {
+        border: none;
+        width: 100%;
+        padding: 0.25rem;
+        outline: none;
+    }
+    input[type="checkbox"] {
+        display: none;
+    }
+    div > div + div {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0.5rem 0;
+        gap: 0.5rem;
+    }
+    .checkbox-label,
+    input:not(input[type="checkbox"]) {
+        border: none;
+        outline: none;
+        padding: 0.5rem;
+        transition: all 0.25s ease-in-out;
+        background-color: var(--background-gray);
+        border: var(--light-gray) 1px solid;
+        border-radius: 15px;
+        color: white;
+    }
+
+    .checkbox-label {
+        cursor: pointer;
+    }
+    .checkbox-label:hover,
+    input:not(input[type="checkbox"]):hover,
+    input:not(input[type="checkbox"]):focus {
+        border: var(--metal) 1px solid;
+        color: var(--metal);
+    }
+    .checkbox-label:has(input[type="checkbox"]:checked) {
+        border: none;
+        border: rgba(var(--blue)) 1px solid;
+        color: var(--light-blue);
+        background-color: rgba(var(--blue), 0.3);
+    }
+
+    button {
+        transition: all 0.25s ease-in-out;
+        cursor: pointer;
+        padding: 0.5rem;
+        border: rgba(var(--blue)) 1px solid;
+        color: var(--light-blue);
+        background-color: rgba(var(--blue), 0.7);
+    }
+    button:hover {
+        background-color: var(--dark-blue);
+
+        color: white;
+    }
+}
+main {
+    margin: 0 1rem;
+}
+h1,
+p {
     margin: 0;
 }
+header {
+    border-bottom: var(--gray) 1px solid;
+    h1 {
+        padding: 1rem;
+    }
+}
+main {
+    h3 {
+        color: var(--gray);
+    }
+}
+.sub-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    div {
+        display: flex;
+        gap: 0.5rem;
+    }
+}
+
 .categories-list,
 .game-list {
     padding: 0;
@@ -62,9 +174,6 @@ h1 {
 .edit-button {
     visibility: hidden;
 }
-.item-name {
-    visibility: visible;
-}
 .categories-list > li:hover,
 .game-list > li:hover {
     .delete-button,
@@ -73,6 +182,11 @@ h1 {
     }
 }
 .no-items-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
     position: absolute;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -88,15 +202,20 @@ h1 {
     color: white;
     text-shadow: 0px 0px 5px #000000;
     font-weight: 600;
+    visibility: visible;
+    .amount {
+        text-align: center;
+    }
+    .title {
+        font-size: 1.5rem;
+    }
 }
 
 a {
     text-decoration: none;
-}
-
-a {
     color: white;
     font-weight: 600;
+    text-align: center;
 }
 .edit-button {
     width: 2rem;
@@ -115,18 +234,7 @@ a {
 .red {
     color: red;
 }
-.add-form {
-    width: max-content;
-    display: flex;
-    flex-direction: column;
-    justify-self: center;
-    justify-content: center;
-    button {
-        cursor: pointer;
-        width: max-content;
-        padding: 0.5rem;
-    }
-}
+
 ul {
     margin: 0;
     padding: 0;
@@ -158,7 +266,6 @@ ul {
         color: green;
     }
 }
-.game-header,
 .game-main {
     display: flex;
     flex-direction: column;
@@ -179,22 +286,4 @@ ul {
         align-items: start;
         max-width: 70%;
     }
-}
-p {
-    margin: 0;
-}
-header {
-    h1 {
-        border-bottom: #525257 1px solid;
-    }
-}
-main {
-    h3 {
-        color: #525257;
-    }
-}
-.sub-header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
