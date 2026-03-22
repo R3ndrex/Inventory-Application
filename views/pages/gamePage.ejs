@@ -10,10 +10,12 @@
             <div>
                 <a href="/">Return to Main Menu</a>
             </div>
+          </div>
           </nav>
 
-            <h2><%=locals?.name%></h2>
+
             <section class="game-info-container">
+                <h2><%=locals?.name%></h2>
                 <img src="<%=locals?.imagesrc%>" alt="<%=locals?.name%> image" />
             
             <%if(locals?.developersNames && locals?.categoriesNames){%>
