@@ -114,10 +114,10 @@ async function getFullGameInfo(gameId) {
         `
         SELECT games.name AS name,
         games.imageSrc as imagesrc, 
-        array_agg(DISTINCT developers.id) AS developersIds, 
-        array_agg(DISTINCT developers.name) AS developersNames, 
-        array_agg(DISTINCT categories.id) AS categoriesIds,
-        array_agg(DISTINCT categories.name) AS categoriesNames
+        array_remove(array_agg(DISTINCT developers.id),NULL) AS developersIds, 
+        array_remove(array_agg(DISTINCT developers.name),NULL) AS developersNames, 
+        array_remove(array_agg(DISTINCT categories.id),NULL) AS categoriesIds,
+        array_remove(array_agg(DISTINCT categories.name),NULL) AS categoriesNames
         FROM games 
         LEFT JOIN games_categories 
         ON games_categories.game_id=games.id
