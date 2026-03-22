@@ -36,11 +36,8 @@ async function getCategoryById(id) {
     return rows[0];
 }
 
-async function postDeveloper({ name, imagesrc }) {
-    await db.query("INSERT INTO developers (name, imageSrc) VALUES ($1,$2)", [
-        name,
-        imagesrc,
-    ]);
+async function postDeveloper({ name }) {
+    await db.query("INSERT INTO developers (name) VALUES ($1)", [name]);
 }
 
 async function updateCategory() {}
