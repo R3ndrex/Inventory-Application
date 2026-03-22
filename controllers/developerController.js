@@ -12,7 +12,7 @@ const developerValidator = [
 ];
 
 module.exports = {
-    getDeveloperList: async (req, res) => {
+    getDeveloperGamesList: async (req, res) => {
         const { developer } = req.params;
         const games = await db.getGamesByDeveloper(developer);
         return res.render("pages/gamesList", { games });
