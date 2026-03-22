@@ -47,11 +47,29 @@ module.exports = {
         await db.deleteCategory(category);
         return res.redirect("/");
     },
-    updateCategory: async (req, res) => {},
+    updateCategory: [
+        categoryValidator,
+        async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                const { name, imagesrc } = req.body;
+                return res.render("pages/updateCategory", {
+                    category,
+                    errors: errors.array(),
+                    name,
+                    imagesrc,
+                });
+            }
+            const { category } = req.params;
+            const { name, imagesrc } = matchedData(req);
+            await db.updateCategory(category, { name, imagesrc });
+            res.redirect("/");
+        },
+    ],
     getUpdateForm: async (req, res) => {
         const { category } = req.params;
         const { name, imagesrc } = await db.getCategoryById(category);
-        return res.render("pages/updateCategory", { name, imagesrc });
+        return res.render("pages/updateCategory", { category, name, imagesrc });
     },
     getFormCategory: async (_, res) => {
         return res.render("pages/addCategory");
