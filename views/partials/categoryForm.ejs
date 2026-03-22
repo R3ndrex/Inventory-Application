@@ -12,14 +12,15 @@
             </nav>
             <section>
                 <form action=<%=locals?.action%> method="post">
-                    <label for="name">Name</label>
+                    <label for="name">Category Name</label>
                     <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
-                    <label for="imagesrc">Image</label>
+                    <label for="imagesrc">Image Path</label>
                     <input value="<%=locals?.imagesrc || "" %>" name="imagesrc" id="imagesrc" />
+                    <%-include("../partials/errors",{errors:locals?.errors})%>
                     <button type="submit">Submit</button>
                 </form>
             </section>
-        <%-include("../partials/errors",{errors:locals?.errors})%>
+
         </main>
     </body>
 </html>
