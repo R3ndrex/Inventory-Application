@@ -1,5 +1,7 @@
 <%if (locals?.errors){ %>
-    <%locals?.errors.forEach((error)=>{%>
-        <div class="red"><%=error?.msg%></div>
-    <%})%>
+    <section>
+        <%locals?.errors.forEach((error)=>{%>
+            <div class="red"><%=error?.msg%></div>
+        <%})%>
+    </section>
 <%}%>
