@@ -11,7 +11,7 @@
                 </div>
             </nav>
             <section>
-                <form action=<%=locals?.action%> method="post">
+                <form action="<%=locals?.action%>" method="post">
                     <label for="name">Category Name</label>
                     <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
                     <label for="imagesrc">Image Path</label>
