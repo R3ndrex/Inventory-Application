@@ -17,35 +17,30 @@
             <section class="game-info-container">
                 <h2><%=locals?.name%></h2>
                 <img src="<%=locals?.imagesrc%>" alt="<%=locals?.name%> image" />
-            
-            <%if(locals?.developersNames && locals?.categoriesNames){%>
                 <div>
+                    <%if(locals?.developersNames.length>0 && locals?.developersNames){%>
                     <div class="developers-list-gamepage">
-                    <p>Developers:</p>
-                    <ul>
-                        <%locals?.developersNames.forEach((developer)=>{%>
-                            <li><%=developer%></li>
-                        <%})%>
-                    </ul>
+                        <p>Developers:</p>
+                        <ul>
+                            <%locals?.developersNames.forEach((developer)=>{%>
+                                <li><a href="/developers/<%=developer%>"><%=developer%></a></li>
+                            <%})%>
+                        </ul>
+                    </div>
+                    <%} if(locals?.categoriesNames &&  locals?.categoriesNames.length>0)%>
+                    <div class="categories-list-gamepage">
+                        <p>Categories:</p> 
+                        <ul>
+                            <%locals?.categoriesNames.forEach((category)=>{%>
+                                <li><a href="/categories/<%=category%>"><%=category%></a></li>
+                            <%})%>
+                        </ul>
+                    </div>
+                    <div class="button-container">
+                        <a href="/games/<%=locals?.id%>/edit" >Update Game </a>
+                        <a href="/games/<%=locals?.id%>/delete" class="delete-button-game">Delete Game</a>
+                    </div>
                 </div>
-                <div class="categories-list-gamepage">
-                    <p>Categories:</p> 
-                    <ul>
-                        <%locals?.categoriesNames.forEach((category)=>{%>
-                            <li><%=category%></li>
-                        <%})%>
-                    </ul>
-                </div>
-                <a href="/games/<%=locals?.id%>/edit" class="update-button">Update Game </a>
-                <a href="/games/<%=locals?.id%>/delete" class="red">Delete Game</a>
-                </div>
-        
-            <%}else{%>
-               <div>
-                <a href="/games/<%=locals?.id%>/edit" class="update-button">Update Game </a>
-                <a href="/games/<%=locals?.id%>/delete" class="red">Delete Game</a>
-               </div> 
-            <%}%>
             </section>
         </main>
     </body>
