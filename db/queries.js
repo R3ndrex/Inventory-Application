@@ -18,6 +18,17 @@ async function postCategory({ name, imagesrc }) {
     ]);
 }
 
+async function getGameAmountByAllCategories() {
+    const categories = await getCategories();
+    const results = await Promise.all(
+        categories.map(async (category) => {
+            const games = await getGamesByCategory(category.name);
+            return { ...category, gamesAmount: games.length || 0 };
+        }),
+    );
+    return results;
+}
+
 async function getCategoryById(id) {
     const { rows } = await db.query("SELECT * FROM categories WHERE id=$1", [
         id,
@@ -182,4 +193,5 @@ module.exports = {
     postDeveloper,
     getGamesByDeveloper,
     getCategoryById,
+    getGameAmountByAllCategories,
 };
