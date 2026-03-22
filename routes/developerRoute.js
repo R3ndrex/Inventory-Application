@@ -8,4 +8,5 @@ developerRouter
     .get(developerController.getFormDeveloper)
     .post(developerController.addDeveloper);
 
+developerRouter.get("/:developer", developerController.getDeveloperGamesList);
 module.exports = developerRouter;
