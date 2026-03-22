@@ -11,13 +11,7 @@
                     <a href="/">Return</a>
                 </div>
             </nav>
-
-            <form action="/developers/add" method="post">
-                <label for="name">Developer Name</label>
-                <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
-                <%-include("../partials/errors",{errors:locals?.errors})%>
-                <button type="submit">Submit</button>
-            </form>
+            <%-include("../partials/developerForm",{action:"/developers/add",errors:locals?.errors})%>
         </main>
 
 

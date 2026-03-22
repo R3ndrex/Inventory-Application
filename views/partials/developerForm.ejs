@@ -1,0 +1,6 @@
+<form action="<%=locals?.action||""%>" method="post">
+    <label for="name">Developer Name</label>
+    <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
+    <%-include("../partials/errors",{errors:locals?.errors})%>
+    <button type="submit">Submit</button>
+</form>
