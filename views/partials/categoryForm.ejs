@@ -2,15 +2,24 @@
 <html lang="en">
     <%- include("../partials/head", {title:locals?.title}) %>
     <body>
-        <h1><%=locals?.title%></h1>
-        <form action=<%=locals?.action%> method="post">
-            <label for="name">Name</label>
-            <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
-            <label for="imagesrc">Image</label>
-            <input value="<%=locals?.imagesrc || "" %>" name="imagesrc" id="imagesrc" />
-            <button type="submit">Submit</button>
-        </form>
+        <header><h1><%=locals?.title%></h1></header>
+        <main>
+            <nav class="sub-header-container">
+                <h3>Update Category Form</h2>
+                <div>
+                    <a href="/">Return</a>
+                </div>
+            </nav>
+            <section>
+                <form action=<%=locals?.action%> method="post">
+                    <label for="name">Name</label>
+                    <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
+                    <label for="imagesrc">Image</label>
+                    <input value="<%=locals?.imagesrc || "" %>" name="imagesrc" id="imagesrc" />
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
         <%-include("../partials/errors",{errors:locals?.errors})%>
-        <a href="/">Return</a>
+        </main>
     </body>
 </html>

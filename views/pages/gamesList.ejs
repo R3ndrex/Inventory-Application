@@ -2,26 +2,32 @@
 <html lang="en">
     <%- include("../partials/head", {title:"Games List"}) %>
     <body>
-        <h1>Games List</h1> 
-        <% if(locals?.games&& locals?.games.length>0){ %>
-            <a class="add-game" href="/games/add">Add Game</a> <a href="/">Return</a>
-            <ul class="game-list">
-            <% locals?.games.forEach((game)=>{ %>
-                <li>
-                    <span class="item-name"><%=game.name%></span>
-                    <a class="edit-button" href="/games/<%=game.id%>/edit"><img src="/edit-icon.svg" sizes="16px" alt="edit button"></a>
-                    <a class="delete-button" href="/games/<%=game.id%>/delete"><img src="/delete-icon.png" alt="delete button"></a>
-                    <a class="image-container" href="/games/<%=game.id%>"><img  src="<%=game.imagesrc%>" alt="<%=game.name%>"></a>
-                </li>
-                <%}) %>
+        <header><h1>Games List</h1> </header>
+        <main>
+            <% if(locals?.games&& locals?.games.length>0){ %>
+                <nav class="sub-header-container">
+                    <h3>Games  — <%=locals?.games.length%></h2>
+                    <div>
+                        <a class="add-game" href="/games/add">Add Game</a> <a href="/">Return</a>
+                    </div>
+                </nav>
+                <ul class="game-list">
+                    <% locals?.games.forEach((game)=>{ %>
+                        <li>
+                            <span class="item-name"><%=game.name%></span>
+                            <a class="edit-button" href="/games/<%=game.id%>/edit"><img src="/edit-icon.svg" sizes="16px" alt="edit button"></a>
+                            <a class="delete-button" href="/games/<%=game.id%>/delete"><img src="/delete-icon.png" alt="delete button"></a>
+                            <a class="image-container" href="/games/<%=game.id%>"><img  src="<%=game.imagesrc%>" alt="<%=game.name%>"></a>
+                        </li>
+                    <%}) %>
                
-            </ul>
-        <%} else {%>
-            <div class="no-items-text"><p>This category seems empty... </p>
-             <a class="add-game" href="/games/add">Add Game</a>
-             <a href="/">Return</a>
-             </div>
-            <%}%>
-             
+                </ul>
+            <%} else {%>
+                <div class="no-items-text"><p>This category seems empty... </p>
+                    <a class="add-game" href="/games/add">Add Game</a>
+                    <a href="/">Return</a>
+                </div>
+                <%}%>
+        </main>
     </body>
 </html>

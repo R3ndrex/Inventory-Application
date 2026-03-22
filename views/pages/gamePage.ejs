@@ -2,11 +2,18 @@
 <html lang="en">
     <%-include("../partials/head",{title:"Game Page"})%>
     <body>
-        <header class="game-header"><h1>Game Page</h1>
-         <a href="/">Return to Main Menu</a></header>
-        <main class="game-main">
+        <header><h1>Inventory Application</h1>
+         </header>
+        <main>
+            <nav class="sub-header-container">
+            <h3>Game Page</h3>
+            <div>
+                <a href="/">Return to Main Menu</a>
+            </div>
+          </nav>
+
             <h2><%=locals?.name%></h2>
-            <div class="game-info-container">
+            <section class="game-info-container">
                 <img src="<%=locals?.imagesrc%>" alt="<%=locals?.name%> image" />
             
             <%if(locals?.developersNames && locals?.categoriesNames){%>
@@ -37,7 +44,7 @@
                 <a href="/games/<%=locals?.id%>/delete" class="red">Delete Game</a>
                </div> 
             <%}%>
-            </div>
+            </section>
         </main>
     </body>
 </html>

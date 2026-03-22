@@ -2,13 +2,23 @@
 <html lang="en">
     <%- include("../partials/head", {title:"Add developer"}) %>
     <body>
-        <h1>Add developer</h1>
-        <form action="/developers/add" method="post">
-            <label for="name">Name</label>
-            <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
-            <button type="submit">Submit</button>
-        </form>
+        <header><h1>Inventory Application</h1></header>
+
+        <main>
+            <nav class="sub-header-container">
+                <h3>Add Developer Form</h3>
+                <div>
+                    <a href="/">Return</a>
+                </div>
+            </nav>
+
+            <form action="/developers/add" method="post">
+                <label for="name">Name</label>
+                <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
+                <button type="submit">Submit</button>
+            </form>
+        </main>
         <%-include("../partials/errors",{errors:locals?.errors})%>
-         <a href="/">Return</a>
+
     </body>
 </html>

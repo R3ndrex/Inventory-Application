@@ -2,9 +2,16 @@
 <html lang="en">
     <%- include("../partials/head", {title:"Update Game"}) %>
     <body>
-        <h1>Update Game</h1>
-        <%-include("../partials/addGameForm", {action:"",buttonText: "Update Game", allCategories, allDevelopers,developersIds:locals?.developersIds,categoriesIds:locals?.categoriesIds})%>
-        <%-include("../partials/errors", {errors:locals?.errors})%>
-        <a href="/">Return to Main Menu</a>
+        <header><h1>Update Game</h1></header>
+        <main>
+            <nav class="sub-header-container">
+                <h3>Update Game Form</h2>
+                <div>
+                    <a href="/">Return to Main Menu</a>
+                </div>
+            </nav>
+            <%-include("../partials/addGameForm", {action:"",buttonText: "Update Game", allCategories, allDevelopers,developersIds:locals?.developersIds,categoriesIds:locals?.categoriesIds})%>
+
+        </main>
     </body>
 </html>

@@ -2,9 +2,15 @@
 <html lang="en">
     <%- include("../partials/head", {title:"Add Game"}) %>
     <body>
-        <h1>Add Game</h1>
+        <header><h1>Inventory Application</h1></header>
+        <main>
+            <nav class="sub-header-container">
+            <h3>Add Game Form</h2>
+            <div>
+                <a href="/">Return to Main Menu</a>
+            </div>
+          </nav>
         <%-include("../partials/addGameForm", {action:locals?.action || "/games/add",buttonText:locals?.buttonText || "Add Game",allCategories,allDevelopers,developersIds:locals?.developersIds,categoriesIds:locals?.categoriesIds })%>
-        <%-include("../partials/errors", {errors:locals?.errors})%>
-        <a href="/">Return to Main Menu</a>
+        </main>
     </body>
 </html>
