@@ -40,7 +40,14 @@ async function postDeveloper({ name }) {
     await db.query("INSERT INTO developers (name) VALUES ($1)", [name]);
 }
 
-async function updateCategory() {}
+async function updateCategory(id, { name, imagesrc }) {
+    await db.query(
+        `UPDATE categories 
+        SET name=$1,imagesrc=$2 WHERE categories.id=$3
+        `,
+        [name, imagesrc, id],
+    );
+}
 
 async function getDevelopers() {
     const { rows } = await db.query(`SELECT * FROM developers`);
