@@ -31,7 +31,6 @@ module.exports = {
             const errors = validationResult(req);
             if (!errors.isEmpty()) {
                 const { name, imagescr } = req.body;
-                console.log(imagescr);
                 return res.render("pages/addCategory", {
                     errors: errors.array(),
                     name,
