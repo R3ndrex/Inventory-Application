@@ -3,19 +3,24 @@
     <%- include("../partials/head", {title:"Main"}) %>
     <body>
     <header>        
-        <h1>Categories</h1>
+        <h1>Inventory Application</h1>
     </header>
         <main>
-          <div class="sub-header-container">  <h3>Categories  — <%=locals?.categories.length%></h2>
-                        <div>
-                            <a href="/categories/add">Add Category</a>
-        <a href="/developers/add">Add Developer</a>
-                        </div></div>
-            <% if(locals?.categories&& locals?.categories.length>0){ %>
+          <nav class="sub-header-container">
+            <h3>Categories  — <%=locals?.categories.length%></h2>
+            <div>
+                <a href="/categories/add">Add Category</a>
+                <a href="/developers/add">Add Developer</a>
+            </div>
+          </nav>
+            <% if(locals?.categories && locals?.categories.length>0){ %>
             <ul class="categories-list">
             <% locals?.categories.forEach((category)=>{ %>
             <li>
-                <span class="item-name"><%=category.name%></span>
+                <div class="item-name">
+                    <div class="title"><%=category.name%></div>
+                    <div class="amount"><%=category?.gamesAmount%> games</div>
+                </div>
                 <a class="edit-button" href="/categories/<%=category.id%>/edit"><img src="/edit-icon.svg" alt="edit button"></a>
                 <a class="delete-button" href="/categories/<%=category.id%>/delete"><img src="/delete-icon.png" alt="delete button"></a>
                 <a class="image-container" href="/categories/<%=category.name%>"><img src="<%=category.imagesrc%>" alt="<%=category.name%>"></a>
