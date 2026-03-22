@@ -48,7 +48,7 @@ form {
     padding: 1rem;
     gap: 0.5rem;
     margin: 1rem;
-    max-width: min(90vw, 400px);
+    width: min(90vw, 400px);
     border: 1px solid var(--gray);
     background-color: rgb(64, 65, 71);
     border-radius: 15px;
@@ -60,6 +60,7 @@ form {
         width: 100%;
         padding: 0.25rem;
         outline: none;
+        text-overflow: ellipsis;
     }
     input[type="checkbox"] {
         display: none;
@@ -227,11 +228,15 @@ a {
 .delete-button {
     right: 0;
     top: 0;
-    color: red;
     cursor: pointer;
-    font-weight: 600;
 }
-.red {
+.errors {
+    div {
+        word-break: break-word;
+    }
+}
+.red,
+.errors {
     color: red;
 }
 
