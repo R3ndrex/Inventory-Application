@@ -9,7 +9,10 @@ itemRouter
 
 itemRouter.get("/:gameId", itemController.getGame);
 itemRouter.get("/:gameId/delete", itemController.deleteGame);
-itemRouter.get("/:gameId/edit", itemController.getUpdateGameForm);
-itemRouter.post("/:gameId/edit", itemController.updateGame);
+
+itemRouter
+    .route("/:gameId/edit")
+    .get(itemController.getUpdateGameForm)
+    .post(itemController.updateGame);
 
 module.exports = itemRouter;
