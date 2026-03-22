@@ -13,12 +13,13 @@
             </nav>
 
             <form action="/developers/add" method="post">
-                <label for="name">Name</label>
+                <label for="name">Developer Name</label>
                 <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
+                <%-include("../partials/errors",{errors:locals?.errors})%>
                 <button type="submit">Submit</button>
             </form>
         </main>
-        <%-include("../partials/errors",{errors:locals?.errors})%>
+
 
     </body>
 </html>
