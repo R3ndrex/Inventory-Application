@@ -1,5 +1,5 @@
 <form action="<%=locals?.action%>" method="post" class="add-form">
-            <label for="name">Name</label>
+            <label for="name"> Game name</label>
             <input value="<%=locals?.name || "" %>" type="text" id="name" name="name" />
             <label for="image">Image Path</label>
             <input value="<%=locals?.image || "" %>" name="image" id="image" />
@@ -7,10 +7,10 @@
 
                 <%if(locals?.allCategories){%>
                     <div>
-                        <label for="category">Categories</label>
+                        <div for="category">Categories</div>
                         <div>
                         <%locals?.allCategories.forEach((category)=>{%>
-                            <label>
+                            <label class="checkbox-label">
                                 <input type="checkbox" name="categories[]" value="<%=category.id%>"<%- locals?.categoriesIds?.includes(String(category.id)) ? 'checked' : '' %>>
                                 <%=category.name%>
                             </label>
@@ -22,10 +22,10 @@
 
                 <%if(locals?.allDevelopers){%>
                     <div>
-                        <label for="developer">Developers</label>
+                        <div for="developer">Developers</div>
                         <div>
                         <%locals?.allDevelopers.forEach((developer)=>{%>
-                            <label>
+                            <label class="checkbox-label">
                                 <input type="checkbox" name="developers[]" value="<%=developer.id%>" <%- locals?.developersIds?.includes(String(developer.id)) ? 'checked' : '' %>>
                                 <%=developer.name%>
                             </label>
@@ -33,5 +33,6 @@
                         </div>
                     </div>
                 <%}%>
+            <%-include("../partials/errors", {errors:locals?.errors})%>
             <button type="submit"><%=locals?.buttonText%></button>
 </form>
