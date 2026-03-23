@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head", {title:"Developer List"}) %>
+    <body>
+        <header><h1>Developer List</h1>
+        <a href="/categories/">Categories</a>
+    </header>
+        <main>
+            <% if(locals?.developers&& locals?.developers.length>0){ %>
+                <nav class="sub-header-container">
+                    <h3>Developers  — <%=locals?.developers.length%></h2>
+                    <div>
+                        <a class="add-developer" href="/developers/add">Add Developer</a>
+                        <a href="/">Return</a>
+                    </div>
+                </nav>
+                <ul class="developer-list">
+                    <% locals?.developers.forEach((developer)=>{ %>
+                        <li>
+                            <a href="/developers/<%=developer.name%>">
+                                <span class="item-name"><%=developer.name%> — <%=developer.gamesAmount%></span>
+                                <div><a class="edit-button" href="/developers/<%=developer.id%>/edit"><img src="/edit-icon.svg" sizes="16px" alt="edit button"></a>
+                                <a class="delete-button" href="/developers/<%=developer.id%>/delete"><img src="/delete-icon.png" alt="delete button"></a>
+                                </div>
+                            </a>
+                        </li>
+                    <%}) %>
+               
+                </ul>
+            <%} else {%>
+                <div class="no-items-text"><p>No developers found... </p>
+                    <a class="add-developer" href="/developers/add">Add Developer</a>
+                    <a href="/">Return</a>
+                </div>
+                <%}%>
+        </main>
+    </body>
+</html>
