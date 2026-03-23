@@ -45,11 +45,25 @@ module.exports = {
     getUpdateForm: async (req, res) => {
         const { developer } = req.params;
         const { name } = await db.getDeveloperById(developer);
-        res.render("pages/updateDeveloper", { name });
+        return res.render("pages/updateDeveloper", { name });
     },
-    updateDeveloper: async (req, res) => {
-        res.redirect("/");
-    },
+    updateDeveloper: [
+        developerValidator,
+        async (req, res) => {
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                const { name } = req.body;
+                return res.render("pages/updateDeveloper", {
+                    name,
+                    errors: errors.array(),
+                });
+            }
+            const { developer } = req.params;
+            const { name } = matchedData(req);
+            await db.updateDeveloper(developer, name);
+            return res.redirect("/");
+        },
+    ],
     getFormDeveloper: async (_, res) => {
         return res.render("pages/addDeveloper");
     },
