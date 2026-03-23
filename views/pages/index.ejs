@@ -20,20 +20,20 @@
             </div>
           </nav>
             <% if(locals?.categories && locals?.categories.length>0){ %>
-            <ul class="categories-list">
-            <% locals?.categories.forEach((category)=>{ %>
-            <li>
-                <div class="item-name">
-                    <div class="title"><%=category.name%></div>
-                    <div class="amount"><%=category?.gamesAmount%> games</div>
-                </div>
-                <a class="edit-button" href="/categories/<%=category.id%>/edit"><img src="/edit-icon.svg" alt="edit button"></a>
-                <a class="delete-button" href="/categories/<%=category.id%>/delete"><img src="/delete-icon.png" alt="delete button"></a>
-                <a class="image-container" href="/categories/<%=category.name%>"><img src="<%=category.imagesrc%>" alt="<%=category.name%>"></a>
-            </li>
+                <ul class="categories-list">
+                <% locals?.categories.forEach((category)=>{ %>
+                    <li>
+                        <div class="item-name">
+                            <div class="title"><%=category.name%></div>
+                            <div class="amount"><%=category?.gamesAmount%> games</div>
+                        </div>
+                        <a class="edit-button" href="/categories/<%=category.id%>/edit"><img src="/edit-icon.svg" alt="edit button"></a>
+                        <a class="delete-button" href="/categories/<%=category.id%>/delete"><img src="/delete-icon.png" alt="delete button"></a>
+                        <a class="image-container" href="/categories/<%=category.name%>"><img src="<%=category.imagesrc%>" alt="<%=category.name%>"></a>
+                    </li>
 
-        <%}) %>
-        </ul>
+                <%}) %>
+                </ul>
         <%}else {%>
             <div> It seems there are no categories... </div>
 
