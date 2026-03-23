@@ -21,6 +21,15 @@ async function deleteDeveloper(id) {
     await db.query("DELETE FROM developers WHERE id = $1", [id]);
 }
 
+async function updateDeveloper(id, name) {
+    await db.query(
+        `UPDATE developers
+        SET name=$1 WHERE developers.id=$2
+        `,
+        [name, id],
+    );
+}
+
 async function getCategoriesWithGameAmount() {
     const categories = await getCategories();
     const results = await Promise.all(
@@ -159,12 +168,10 @@ async function getDeveloperById(id) {
     const { rows } = await db.query("SELECT * FROM developers WHERE id=$1", [
         id,
     ]);
-    console.log(rows);
     return rows[0];
 }
 
 async function updateGame(gameId, { name, image, developers, categories }) {
-    console.log(categories);
     await db.query("BEGIN");
     try {
         await db.query(
@@ -221,6 +228,7 @@ module.exports = {
     getDevelopersWithGameAmount,
     getDeveloperById,
     getCategories,
+    updateDeveloper,
     getDevelopers,
     deleteDeveloper,
 };
