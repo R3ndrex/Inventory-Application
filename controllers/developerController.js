@@ -12,6 +12,10 @@ const developerValidator = [
 ];
 
 module.exports = {
+    getDevelopersList: async (_, res) => {
+        const developers = await db.getDevelopersWithGameAmount();
+        return res.render("pages/developerList", { developers });
+    },
     getDeveloperGamesList: async (req, res) => {
         const { developer } = req.params;
         const games = await db.getGamesByDeveloper(developer);
@@ -34,11 +38,18 @@ module.exports = {
         },
     ],
     deleteDeveloper: async (req, res) => {
-        const { category } = req.params;
-        await db.deleteCategory(category);
+        const { developer } = req.params;
+        await db.deleteDeveloper(developer);
         return res.redirect("/");
     },
-    updateDeveloper: (req, res) => {},
+    getUpdateForm: async (req, res) => {
+        const { developer } = req.params;
+        const { name } = await db.getDeveloperById(developer);
+        res.render("pages/updateDeveloper", { name });
+    },
+    updateDeveloper: async (req, res) => {
+        res.redirect("/");
+    },
     getFormDeveloper: async (_, res) => {
         return res.render("pages/addDeveloper");
     },
