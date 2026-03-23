@@ -15,7 +15,7 @@
 
             <section class="game-info-container">
                 <h2><%=locals?.name%></h2>
-                <img src="<%=locals?.imagesrc%>" alt="<%=locals?.name%> image" />
+                <img fetchpriority=high src="<%=locals?.imagesrc%>" alt="<%=locals?.name%> image" />
                 <div>
                     <%if(locals?.developersNames.length>0 && locals?.developersNames){%>
                     <div class="developers-list-gamepage">
