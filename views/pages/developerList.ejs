@@ -3,7 +3,12 @@
     <%- include("../partials/head", {title:"Developer List"}) %>
     <body>
         <header><h1>Developer List</h1>
-        <a href="/categories/">Categories</a>
+        <div>
+            <h2 class="active">
+                <a>Developers</a>
+        </h2>
+            <h2 ><a href="/categories">Categories</a></h2>
+        </div>
     </header>
         <main>
             <% if(locals?.developers&& locals?.developers.length>0){ %>
