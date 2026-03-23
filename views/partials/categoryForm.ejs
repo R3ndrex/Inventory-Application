@@ -2,10 +2,10 @@
 <html lang="en">
     <%- include("../partials/head", {title:locals?.title}) %>
     <body>
-        <header><h1><%=locals?.title%></h1></header>
+        <%-include("../partials/header")%>
         <main>
             <nav class="sub-header-container">
-                <h3>Update Category Form</h2>
+                <h3><%=locals?.title%></h2>
                 <div>
                     <a href="/">Return</a>
                 </div>

@@ -2,7 +2,7 @@
 <html lang="en">
     <%- include("../partials/head", {title:"Games List"}) %>
     <body>
-        <header><h1>Games List</h1> </header>
+        <%-include("../partials/header")%>
         <main>
             <% if(locals?.games&& locals?.games.length>0){ %>
                 <nav class="sub-header-container">
@@ -23,7 +23,7 @@
                
                 </ul>
             <%} else {%>
-                <div class="no-items-text"><p>This category seems empty... </p>
+                <div class="no-items-text"><p>No games found... </p>
                     <a class="add-game" href="/games/add">Add Game</a>
                     <a href="/">Return</a>
                 </div>

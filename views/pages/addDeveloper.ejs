@@ -2,16 +2,15 @@
 <html lang="en">
     <%- include("../partials/head", {title:"Add developer"}) %>
     <body>
-        <header><h1>Inventory Application</h1></header>
-
+        <%-include("../partials/header")%>
         <main>
             <nav class="sub-header-container">
                 <h3>Add Developer Form</h3>
                 <div>
-                    <a href="/">Return</a>
+                    <a href="/developers">Return</a>
                 </div>
             </nav>
-            <%-include("../partials/developerForm",{action:"/developers/add",errors:locals?.errors})%>
+            <%-include("../partials/developerForm",{name:locals?.name,action:"/developers/add",errors:locals?.errors})%>
         </main>
 
 
