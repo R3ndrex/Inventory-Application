@@ -329,6 +329,7 @@ ul {
     align-items: center;
 }
 .game-info-container {
+    max-width: 300px;
     justify-self: center;
     display: flex;
     flex-direction: column;
@@ -339,7 +340,7 @@ ul {
     }
     .button-container {
         display: flex;
-        gap: 1rem;
+        gap: 1rem 0.5rem;
         justify-content: space-around;
         margin: 1rem 0;
         a {
