@@ -1,15 +1,19 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("node:path");
+const compression = require("compression");
+
 const categoryRoute = require("./routes/categoryRoute");
 const itemRoute = require("./routes/itemRoute");
 const developerRoute = require("./routes/developerRoute");
+
 const app = express();
 
 app.set("view engine", "ejs");
 app.set("views", path.resolve(__dirname, "./views"));
-app.use(express.static("public"));
 
+app.use(express.static("public"));
+app.use(compression());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (_, res) => {
