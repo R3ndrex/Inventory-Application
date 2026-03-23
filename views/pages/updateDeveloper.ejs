@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include("../partials/head", {title:"Update developer"}) %>
+    <body>
+        <header><h1>Inventory Application</h1></header>
+
+        <main>
+            <nav class="sub-header-container">
+                <h3>Update Developer Form</h3>
+                <div>
+                    <a href="/">Return</a>
+                </div>
+            </nav>
+            <%-include("../partials/developerForm",{action:"/developers/update",errors:locals?.errors})%>
+        </main>
+
+
+    </body>
+</html>
