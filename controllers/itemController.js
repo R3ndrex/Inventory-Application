@@ -30,7 +30,7 @@ const gameValidator = [
         .bail(),
     body("developers", "Format isn't correct")
         .isArray({ min: 1 })
-        .withMessage("There must be 1 or more deveopers"),
+        .withMessage("There must be 1 or more developers"),
 ];
 
 module.exports = {
@@ -108,12 +108,19 @@ module.exports = {
                 const allCategories = await db.getCategories();
                 const allDevelopers = await db.getDevelopers();
                 const { image, name, categories, developers } = req.body;
+                console.log(categories);
+                const categoriesIds = categories?.map((id) => {
+                    return String(id);
+                });
+                const developersIds = developers?.map((id) => {
+                    return String(id);
+                });
                 return res.status(400).render("pages/updateGame", {
                     errors: errors.array(),
                     allDevelopers,
                     allCategories,
-                    categoriesIds: String(categories),
-                    developersIds: String(developers),
+                    categoriesIds,
+                    developersIds,
                     image,
                     name,
                 });
