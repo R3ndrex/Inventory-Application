@@ -14,7 +14,7 @@
                 <ul class="game-list">
                     <% locals?.games.forEach((game)=>{ %>
                         <li>
-                            <span class="item-name"><%=game.name%></span>
+                            <div class="item-name"><%=game.name%></div>
                             <a class="edit-button" href="/games/<%=game.id%>/edit"><img src="/edit-icon.svg" sizes="16px" alt="edit button"></a>
                             <a class="delete-button" href="/games/<%=game.id%>/delete"><img src="/delete-icon.png" alt="delete button"></a>
                             <a class="image-container" href="/games/<%=game.id%>"><img  src="<%=game.imagesrc%>" alt="<%=game.name%>"></a>
