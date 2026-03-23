@@ -17,13 +17,27 @@ async function postCategory({ name, imagesrc }) {
         imagesrc,
     ]);
 }
+async function deleteDeveloper(id) {
+    await db.query("DELETE FROM developers WHERE id = $1", [id]);
+}
 
-async function getGameAmountByAllCategories() {
+async function getCategoriesWithGameAmount() {
     const categories = await getCategories();
     const results = await Promise.all(
         categories.map(async (category) => {
             const games = await getGamesByCategory(category.name);
             return { ...category, gamesAmount: games.length || 0 };
+        }),
+    );
+    return results;
+}
+
+async function getDevelopersWithGameAmount() {
+    const developers = await getDevelopers();
+    const results = await Promise.all(
+        developers.map(async (developer) => {
+            const games = await getGamesByDeveloper(developer.name);
+            return { ...developer, gamesAmount: games.length || 0 };
         }),
     );
     return results;
@@ -66,14 +80,14 @@ async function getGamesByCategory(category) {
     return rows;
 }
 
-async function getGamesByDeveloper(category) {
+async function getGamesByDeveloper(developer) {
     const { rows } = await db.query(
         `SELECT games.* FROM games 
         LEFT JOIN games_developers
         ON games_developers.game_id=games.id
         LEFT JOIN developers
         ON games_developers.developer_id = developers.id WHERE developers.name = $1`,
-        [category],
+        [developer],
     );
     return rows;
 }
@@ -141,6 +155,13 @@ async function getFullGameInfo(gameId) {
     );
     return rows[0];
 }
+async function getDeveloperById(id) {
+    const { rows } = await db.query("SELECT * FROM developers WHERE id=$1", [
+        id,
+    ]);
+    console.log(rows);
+    return rows[0];
+}
 
 async function updateGame(gameId, { name, image, developers, categories }) {
     console.log(categories);
@@ -182,8 +203,8 @@ async function updateGame(gameId, { name, image, developers, categories }) {
         throw error;
     }
 }
+
 module.exports = {
-    getCategories,
     deleteCategory,
     postCategory,
     updateCategory,
@@ -191,11 +212,15 @@ module.exports = {
     deleteGame,
     postGame,
     updateGame,
-    getDevelopers,
     getFullGameInfo,
     findGameByName,
     postDeveloper,
     getGamesByDeveloper,
     getCategoryById,
-    getGameAmountByAllCategories,
+    getCategoriesWithGameAmount,
+    getDevelopersWithGameAmount,
+    getDeveloperById,
+    getCategories,
+    getDevelopers,
+    deleteDeveloper,
 };
