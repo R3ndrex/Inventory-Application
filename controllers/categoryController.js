@@ -17,7 +17,7 @@ const categoryValidator = [
 
 module.exports = {
     getCategoryList: async (_, res) => {
-        const categories = await db.getGameAmountByAllCategories();
+        const categories = await db.getCategoriesWithGameAmount();
         return res.render("pages/index", { categories });
     },
     getCategory: async (req, res) => {
