@@ -108,7 +108,6 @@ module.exports = {
                 const allCategories = await db.getCategories();
                 const allDevelopers = await db.getDevelopers();
                 const { image, name, categories, developers } = req.body;
-                console.log(categories);
                 const categoriesIds = categories?.map((id) => {
                     return String(id);
                 });
